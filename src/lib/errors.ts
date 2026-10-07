@@ -1,5 +1,13 @@
-import { BaseError } from "viem";
+import { BaseError, ContractFunctionRevertedError } from "viem";
 export function friendlyError(error: unknown): string {
+  const reverted =
+    error instanceof BaseError
+      ? error.walk((cause) => cause instanceof ContractFunctionRevertedError)
+      : null;
+  const contractError =
+    reverted instanceof ContractFunctionRevertedError
+      ? reverted.data?.errorName
+      : undefined;
   const message =
     error instanceof BaseError
       ? error.shortMessage
@@ -10,11 +18,11 @@ export function friendlyError(error: unknown): string {
     return "You declined the wallet request. No payment was made.";
   if (/insufficient funds/i.test(message))
     return "Your wallet needs enough USDC for this amount and the network fee.";
-  if (/InvoiceClosed/i.test(message))
+  if (contractError === "InvoiceClosed" || /InvoiceClosed/i.test(message))
     return "This invoice has already been paid or cancelled. Refresh to see its status.";
-  if (/TransferFailed/i.test(message))
+  if (contractError === "TransferFailed" || /TransferFailed/i.test(message))
     return "A recipient could not receive this payment. The entire split was reverted. The network may still charge a fee.";
-  if (/InvoiceNotFound/i.test(message))
+  if (contractError === "InvoiceNotFound" || /InvoiceNotFound/i.test(message))
     return "This invoice does not exist. Check the link with the sender.";
   if (/timeout|timed out/i.test(message))
     return "The network is taking longer than expected. If a transaction was sent, check its status before trying again.";
