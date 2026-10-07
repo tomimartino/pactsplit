@@ -12,9 +12,9 @@ Arc makes USDC the native currency for both payment and gas. PactSplit uses nati
 
 ## Links and proof to complete
 
-- Working website: fill with the confirmed public Vercel URL.
-- Public GitHub repository: fill after publication.
-- Public builder profile: use the builder's actual GitHub/X/Farcaster profile.
+- Working website: https://pactsplit.vercel.app (testnet configuration; contract activation pending).
+- Public GitHub repository: https://github.com/tomimartino/pactsplit.
+- Public builder profile: https://github.com/tomimartino.
 - Arc mainnet contract: fill only after deployment and source verification.
 - Deployment transaction: fill with actual explorer URL.
 - Mainnet sample invoice: fill with a working PactSplit checkout link.
@@ -36,7 +36,7 @@ Use test funds while rehearsing. Do not present the local or testnet receipt as 
 - [ ] Working deployment on Arc mainnet, not only local/testnet.
 - [ ] Verified public contract source.
 - [ ] Hosted website using the same mainnet chain and trusted contract.
-- [ ] Public source repository and builder profile.
+- [x] Public source repository and builder profile.
 - [ ] Checked live invoice and confirmed payout receipt.
 - [ ] Builder confirms eligibility, including any prior Circle/Arc funding for this same project.
 - [ ] Submit the completed build through the official DoraHacks program page.

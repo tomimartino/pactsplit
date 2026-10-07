@@ -1,0 +1,8 @@
+src/generated/
+public/deployment-artifact.json
+node_modules/
+.next/
+.vercel/
+contracts/artifacts/
+contracts/cache/
+work/

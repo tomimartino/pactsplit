@@ -1,17 +1,218 @@
-'use client';
-import Link from 'next/link';
-import { useState } from 'react';
-import { useAccount } from 'wagmi';
-import { useQuery } from '@tanstack/react-query';
-import { pactSplitAbi } from '@/generated/pactsplit';
-import { contractAddress, publicClient, invoicePath, chain } from '@/lib/network';
-import { formatMoney } from '@/lib/amounts';
-import { friendlyError } from '@/lib/errors';
-import { Arrow, Icon } from '@/components/icons';
-export default function Invoices(){
-  const {address}=useAccount();const [offset,setOffset]=useState(0);
-  const query=useQuery({queryKey:['invoices',chain.id,contractAddress,address,offset],enabled:!!address&&!!contractAddress,queryFn:async()=>{const [ids,total]=await publicClient.readContract({address:contractAddress!,abi:pactSplitAbi,functionName:'getOwnerInvoices',args:[address!,BigInt(offset),12n]});const invoices=await Promise.all(ids.map(async id=>({id,...await publicClient.readContract({address:contractAddress!,abi:pactSplitAbi,functionName:'getInvoice',args:[id]})})));return {invoices,total};}});
-  const invoices=query.data?.invoices||[];
-  const paid=invoices.filter(i=>i.status===1);const active=invoices.filter(i=>i.status===0);
-  return <><div className="page-heading"><div><span className="eyebrow">A GOOD DAY TO WORK TOGETHER</span><h1>Your team’s payday, simplified.</h1><p>Keep every project and every agreed split in one place.</p></div><Link href="/invoices/new" className="btn"><Icon name="plus"/>New invoice</Link></div><div className="stats-grid"><div className="stat-card"><span>Published invoices</span><strong>{query.data?String(query.data.total):'—'}</strong><small>For this wallet on {chain.name}</small></div><div className="stat-card"><span>Awaiting payment</span><strong>{query.data?String(active.length):'—'}</strong><small>On this page</small></div><div className="stat-card mint-stat"><span>Team payments received</span><strong>{query.data?formatMoney(paid.reduce((sum,i)=>sum+i.amount,0n)):'—'} <em>USDC</em></strong><small>Total distributed on this page</small></div></div><section className="panel invoice-list"><div className="list-heading"><h2>Your invoices</h2><button className="text-button" disabled={!address||!contractAddress||query.isFetching} onClick={()=>void query.refetch()}>{query.isFetching?'Refreshing…':'Refresh'}</button></div>{query.error?<div className="error-box" role="alert">{friendlyError(query.error)}</div>:null}{query.isLoading&&address&&contractAddress?<p className="empty-message">Loading your invoices from Arc…</p>:!address?<div className="empty-state"><span className="empty-icon"><Icon name="wallet"/></span><h3>Let’s find your workspace.</h3><p>Connect your wallet to see your invoices.<br/>You can explore the demo or prepare a draft first.</p><Link href="/demo" className="btn btn-ghost">Explore the demo <Arrow/></Link></div>:invoices.length===0?<div className="empty-state"><span className="empty-icon"><Icon name="invoice"/></span><h3>Your next project starts here.</h3><p>Create an invoice and make the split clear from day one.</p><Link href="/invoices/new" className="btn">Create an invoice <Arrow/></Link></div>:<div className="table-wrap"><table><thead><tr><th>Project</th><th>Team</th><th>Amount</th><th>Status</th><th><span className="sr-only">Open</span></th></tr></thead><tbody>{invoices.map(inv=><tr key={String(inv.id)}><td><Link href={invoicePath(inv.id)}><strong>{inv.title}</strong><span>Invoice #{String(inv.id)}</span></Link></td><td><div className="avatar-stack">{inv.recipients.map((r,i)=><span key={r.wallet} className={`avatar avatar-${i%5}`} title={r.name}>{r.name[0]}</span>)}</div></td><td>{formatMoney(inv.amount)} <small>USDC</small></td><td><span className={`status-pill status-${inv.status}`}>{['Open','Paid','Cancelled'][inv.status]}</span></td><td><Link href={invoicePath(inv.id)} aria-label={`Open invoice ${inv.title}`}><Arrow/></Link></td></tr>)}</tbody></table></div>}{query.data && query.data.total>12n?<div className="pagination"><button className="btn btn-small btn-ghost" disabled={offset===0} onClick={()=>setOffset(Math.max(0,offset-12))}>Previous</button><span>Page {offset/12+1}</span><button className="btn btn-small btn-ghost" disabled={BigInt(offset+12)>=query.data.total} onClick={()=>setOffset(offset+12)}>Next</button></div>:null}</section><div className="workspace-tip"><span className="star-symbol">✳</span><div><strong>Good teams start with a clear agreement.</strong><p>Make sure everyone approves their share before you publish an invoice.</p></div><Link href="/invoices/new" className="text-link">Make a pact <Arrow/></Link></div></>;
+"use client";
+import Link from "next/link";
+import { useState } from "react";
+import { useAccount } from "wagmi";
+import { useQuery } from "@tanstack/react-query";
+import { pactSplitAbi } from "@/generated/pactsplit";
+import {
+  contractAddress,
+  publicClient,
+  invoicePath,
+  chain,
+} from "@/lib/network";
+import { formatMoney } from "@/lib/amounts";
+import { friendlyError } from "@/lib/errors";
+import { Arrow, Icon } from "@/components/icons";
+export default function Invoices() {
+  const { address } = useAccount();
+  const [offset, setOffset] = useState(0);
+  const query = useQuery({
+    queryKey: ["invoices", chain.id, contractAddress, address, offset],
+    enabled: !!address && !!contractAddress,
+    queryFn: async () => {
+      const [ids, total] = await publicClient.readContract({
+        address: contractAddress!,
+        abi: pactSplitAbi,
+        functionName: "getOwnerInvoices",
+        args: [address!, BigInt(offset), 12n],
+      });
+      const invoices = await Promise.all(
+        ids.map(async (id) => ({
+          id,
+          ...(await publicClient.readContract({
+            address: contractAddress!,
+            abi: pactSplitAbi,
+            functionName: "getInvoice",
+            args: [id],
+          })),
+        })),
+      );
+      return { invoices, total };
+    },
+  });
+  const invoices = query.data?.invoices || [];
+  const paid = invoices.filter((i) => i.status === 1);
+  const active = invoices.filter((i) => i.status === 0);
+  return (
+    <>
+      <div className="page-heading">
+        <div>
+          <span className="eyebrow">A GOOD DAY TO WORK TOGETHER</span>
+          <h1>Your team’s payday, simplified.</h1>
+          <p>Keep every project and every agreed split in one place.</p>
+        </div>
+        <Link href="/invoices/new" className="btn">
+          <Icon name="plus" />
+          New invoice
+        </Link>
+      </div>
+      <div className="stats-grid">
+        <div className="stat-card">
+          <span>Published invoices</span>
+          <strong>{query.data ? String(query.data.total) : "—"}</strong>
+          <small>For this wallet on {chain.name}</small>
+        </div>
+        <div className="stat-card">
+          <span>Awaiting payment</span>
+          <strong>{query.data ? String(active.length) : "—"}</strong>
+          <small>On this page</small>
+        </div>
+        <div className="stat-card mint-stat">
+          <span>Team payments received</span>
+          <strong>
+            {query.data
+              ? formatMoney(paid.reduce((sum, i) => sum + i.amount, 0n))
+              : "—"}{" "}
+            <em>USDC</em>
+          </strong>
+          <small>Total distributed on this page</small>
+        </div>
+      </div>
+      <section className="panel invoice-list">
+        <div className="list-heading">
+          <h2>Your invoices</h2>
+          <button
+            className="text-button"
+            disabled={!address || !contractAddress || query.isFetching}
+            onClick={() => void query.refetch()}
+          >
+            {query.isFetching ? "Refreshing…" : "Refresh"}
+          </button>
+        </div>
+        {query.error ? (
+          <div className="error-box" role="alert">
+            {friendlyError(query.error)}
+          </div>
+        ) : null}
+        {query.isLoading && address && contractAddress ? (
+          <p className="empty-message">Loading your invoices from Arc…</p>
+        ) : !address ? (
+          <div className="empty-state">
+            <span className="empty-icon">
+              <Icon name="wallet" />
+            </span>
+            <h3>Let’s find your workspace.</h3>
+            <p>
+              Connect your wallet to see your invoices.
+              <br />
+              You can explore the demo or prepare a draft first.
+            </p>
+            <Link href="/demo" className="btn btn-ghost">
+              Explore the demo <Arrow />
+            </Link>
+          </div>
+        ) : invoices.length === 0 ? (
+          <div className="empty-state">
+            <span className="empty-icon">
+              <Icon name="invoice" />
+            </span>
+            <h3>Your next project starts here.</h3>
+            <p>Create an invoice and make the split clear from day one.</p>
+            <Link href="/invoices/new" className="btn">
+              Create an invoice <Arrow />
+            </Link>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Team</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>
+                    <span className="sr-only">Open</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {invoices.map((inv) => (
+                  <tr key={String(inv.id)}>
+                    <td>
+                      <Link href={invoicePath(inv.id)}>
+                        <strong>{inv.title}</strong>
+                        <span>Invoice #{String(inv.id)}</span>
+                      </Link>
+                    </td>
+                    <td>
+                      <div className="avatar-stack">
+                        {inv.recipients.map((r, i) => (
+                          <span
+                            key={r.wallet}
+                            className={`avatar avatar-${i % 5}`}
+                            title={r.name}
+                          >
+                            {r.name[0]}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
+                    <td>
+                      {formatMoney(inv.amount)} <small>USDC</small>
+                    </td>
+                    <td>
+                      <span className={`status-pill status-${inv.status}`}>
+                        {["Open", "Paid", "Cancelled"][inv.status]}
+                      </span>
+                    </td>
+                    <td>
+                      <Link
+                        href={invoicePath(inv.id)}
+                        aria-label={`Open invoice ${inv.title}`}
+                      >
+                        <Arrow />
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {query.data && query.data.total > 12n ? (
+          <div className="pagination">
+            <button
+              className="btn btn-small btn-ghost"
+              disabled={offset === 0}
+              onClick={() => setOffset(Math.max(0, offset - 12))}
+            >
+              Previous
+            </button>
+            <span>Page {offset / 12 + 1}</span>
+            <button
+              className="btn btn-small btn-ghost"
+              disabled={BigInt(offset + 12) >= query.data.total}
+              onClick={() => setOffset(offset + 12)}
+            >
+              Next
+            </button>
+          </div>
+        ) : null}
+      </section>
+      <div className="workspace-tip">
+        <span className="star-symbol">✳</span>
+        <div>
+          <strong>Good teams start with a clear agreement.</strong>
+          <p>
+            Make sure everyone approves their share before you publish an
+            invoice.
+          </p>
+        </div>
+        <Link href="/invoices/new" className="text-link">
+          Make a pact <Arrow />
+        </Link>
+      </div>
+    </>
+  );
 }

@@ -12,7 +12,7 @@ Kode aplikasi, kontrak, tes, demo, dan konfigurasi Vercel ada di repositori ini.
 4. Tekan **Deploy on Arc Testnet** dan tinjau transaksi di dompet. Anda yang menandatangani transaksi. Jangan bagikan seed phrase atau private key.
 5. Sesudah berhasil, halaman menampilkan tiga nilai publik: chain ID, alamat kontrak, dan deployment block.
 6. Masukkan nilai tersebut ke Environment Variables proyek **pactsplit** di Vercel untuk Production dan Preview. Redeploy karena nilai publik dibundel ketika aplikasi dibangun.
-7. Verifikasi source kontrak di explorer testnet. Gunakan Solidity **0.8.28**, optimizer **200 runs**, EVM target **cancun**, tanpa constructor arguments. Source lengkap tersedia dari standard JSON input Hardhat pada build info; script pengekspor dapat menyiapkannya.
+7. Verifikasi source kontrak di explorer testnet. Gunakan Solidity **0.8.28**, optimizer **200 runs**, EVM target **cancun**, tanpa constructor arguments. Jalankan `node scripts/export-verification.mjs` setelah compile untuk menyiapkan `work/verification-standard-input.json`. Nama kontrak lengkap: `project/contracts/PactSplit.sol:PactSplit`.
 8. Buat invoice 10 test USDC dengan tiga alamat penerima berbeda. Buka link pada browser atau perangkat kedua dan bayar dari dompet klien. Pastikan penerima mendapat 6/3/1 dan receipt berstatus sukses.
 
 ## 2. Hosting gratis
@@ -25,7 +25,7 @@ Untuk deployment dari terminal setelah login dan memastikan target proyek:
 
 ```sh
 npx vercel project inspect --scope tomimartinoaffandis-projects --non-interactive
-npx vercel deploy --prod --scope tomimartinoaffandis-projects --yes
+npx vercel deploy --prod --scope tomimartinoaffandis-projects --archive=tgz --yes
 ```
 
 Vercel Hobby ditujukan untuk penggunaan pribadi/nonkomersial dan memiliki batas pemakaian. Gunakan untuk prototipe hackathon pribadi ini; evaluasi paket lagi jika meluncurkan layanan komersial.

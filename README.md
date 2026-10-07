@@ -2,6 +2,8 @@
 
 **One invoice. Every teammate paid.**
 
+[Website](https://pactsplit.vercel.app) · [Public source](https://github.com/tomimartino/pactsplit) · [Wallet setup](https://pactsplit.vercel.app/setup)
+
 PactSplit gives freelance teams a shared invoice. A client pays native USDC once on Arc; an immutable contract forwards the agreed shares to up to five wallets in the same transaction.
 
 ## Current status
@@ -57,6 +59,8 @@ The local wallet forwards requests to unlocked Hardhat test accounts. It is only
 ## Deploy to Arc and Vercel
 
 See [SETUP.md](docs/SETUP.md). The browser `/setup` page deploys the compiled contract through the user's own wallet. It never asks for a private key or seed phrase.
+
+To prepare the explorer's Solidity standard JSON input, run `node scripts/export-verification.mjs` after compiling. It writes `work/verification-standard-input.json` with the exact compiler source names and settings used for deployment.
 
 Public environment variables:
 
