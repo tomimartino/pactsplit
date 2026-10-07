@@ -12,9 +12,10 @@ Arc makes USDC the native currency for both payment and gas. PactSplit uses nati
 
 ## Links and proof to complete
 
-- Working website: https://pactsplit.vercel.app (Arc Testnet contract configured).
+- Mainnet setup: https://pactsplit.vercel.app/setup (chain 5042; contract deployment pending).
+- Working testnet website: https://pactsplit-testnet.vercel.app (verified Arc Testnet contract configured).
 - Verified testnet contract: https://explorer.testnet.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract. Deployment block 65927636; see [deployment evidence](DEPLOYMENT.md).
-- Completed testnet rehearsal: [invoice #2](https://pactsplit.vercel.app/pay/5042002/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/2), [confirmed 10-USDC payment with 6/3/1 payouts](https://explorer.testnet.arc.io/tx/0x6ad1d0a5a148ff93e7dbe7ee2bcd86dc01ff2fca12de15c66c0f25377d590e45).
+- Completed testnet rehearsal: [invoice #2](https://pactsplit-testnet.vercel.app/pay/5042002/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/2), [confirmed 10-USDC payment with 6/3/1 payouts](https://explorer.testnet.arc.io/tx/0x6ad1d0a5a148ff93e7dbe7ee2bcd86dc01ff2fca12de15c66c0f25377d590e45).
 - Public GitHub repository: https://github.com/tomimartino/pactsplit.
 - Public builder profile: https://github.com/tomimartino.
 - Arc mainnet contract: fill only after deployment and source verification.
