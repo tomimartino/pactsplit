@@ -12,7 +12,8 @@ Arc makes USDC the native currency for both payment and gas. PactSplit uses nati
 
 ## Links and proof to complete
 
-- Working website: https://pactsplit.vercel.app (testnet configuration; contract activation pending).
+- Working website: https://pactsplit.vercel.app (Arc Testnet contract configured).
+- Verified testnet contract: https://explorer.testnet.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract. Deployment block 65927636; see [deployment evidence](DEPLOYMENT.md). A wallet-signed invoice and payout are still pending.
 - Public GitHub repository: https://github.com/tomimartino/pactsplit.
 - Public builder profile: https://github.com/tomimartino.
 - Arc mainnet contract: fill only after deployment and source verification.
@@ -34,7 +35,7 @@ Use test funds while rehearsing. Do not present the local or testnet receipt as 
 ## Remaining submission requirements
 
 - [ ] Working deployment on Arc mainnet, not only local/testnet.
-- [ ] Verified public contract source.
+- [ ] Verified public contract source on Arc mainnet.
 - [ ] Hosted website using the same mainnet chain and trusted contract.
 - [x] Public source repository and builder profile.
 - [ ] Checked live invoice and confirmed payout receipt.

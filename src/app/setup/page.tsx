@@ -5,6 +5,7 @@ import { useAccount, useWalletClient } from "wagmi";
 import {
   chain,
   contractAddress,
+  deploymentBlock,
   publicClient,
   explorerAddress,
   isMainnet,
@@ -118,7 +119,7 @@ export default function Setup() {
             </strong>
             <p>
               {isMainnet
-                ? "Real USDC covers the deployment network fee. Review it in your wallet."
+                ? "Real USDC covers payments and network fees. Review each transaction in your wallet."
                 : chain.id === 31337
                   ? "The local test wallets are already funded."
                   : "Open the faucet below. Choose Arc Testnet and paste your wallet address."}
@@ -128,11 +129,21 @@ export default function Setup() {
         <li>
           <span className="number-circle">3</span>
           <div>
-            <strong>Deploy and get your details</strong>
+            <strong>
+              {contractAddress
+                ? "Create your first invoice"
+                : "Deploy and get your details"}
+            </strong>
             <p>
-              Click Deploy below and confirm in your wallet. Your contract
-              address and deployment block appear automatically.
+              {contractAddress
+                ? "The invoice contract is ready. Add your team and their shares, then publish from your wallet."
+                : "Click Deploy below and confirm in your wallet. Your contract address and deployment block appear automatically."}
             </p>
+            {contractAddress ? (
+              <a className="text-link" href="/invoices/new">
+                Create invoice <Arrow />
+              </a>
+            ) : null}
           </div>
         </li>
       </ol>
@@ -168,6 +179,12 @@ export default function Setup() {
                 )}
               </dd>
             </div>
+            {contractAddress ? (
+              <div>
+                <dt>Deployment block</dt>
+                <dd>{String(deploymentBlock)}</dd>
+              </div>
+            ) : null}
             <div>
               <dt>Wallet balance</dt>
               <dd>

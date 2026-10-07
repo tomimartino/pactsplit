@@ -11,7 +11,8 @@ PactSplit gives freelance teams a shared invoice. A client pays native USDC once
 - Working web app: landing page, interactive demo, wallet workspace, invoice form, public checkout, confirmed receipt, cancellation, and wallet-based contract setup.
 - Contract compiled with Solidity 0.8.28; 14 contract tests and 4 amount tests pass.
 - Browser flow verified against a real local EVM: publish a 10-test-USDC invoice, pay from a separate client account, distribute 6/3/1, and render its receipt.
-- **Arc testnet/mainnet contract deployment and verification still require the builder's wallet. Local tests do not prove Arc-specific behavior.** The hosted site defaults to Arc testnet and disables transactions until its deployed contract is configured.
+- **Arc Testnet is configured:** [PactSplit contract](https://explorer.testnet.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract), deployed at block 65927636. The explorer verified its source, and its creation bytecode, runtime bytecode, source, and ABI match the reviewed build. An Arc RPC simulation of invoice creation passes. See [deployment evidence](docs/DEPLOYMENT.md).
+- A wallet-signed testnet invoice and payout still need to be checked. Mainnet deployment and payment proof are pending. Local tests and read-only simulations do not prove the complete Arc payment flow.
 - The `/demo` page is an illustration, not a payment or blockchain transaction.
 
 ## Free-first stack
