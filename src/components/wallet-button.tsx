@@ -18,11 +18,18 @@ export function WalletButton() {
     );
     if (!connector) {
       setError(
-        "Install a browser wallet such as MetaMask, then reload this page.",
+        "Open PactSplit in Chrome or Edge with MetaMask or Rabby installed, then connect your wallet.",
       );
       return;
     }
     try {
+      const provider = await connector.getProvider();
+      if (!provider) {
+        setError(
+          "Open PactSplit in Chrome or Edge with MetaMask or Rabby installed, then connect your wallet.",
+        );
+        return;
+      }
       await connectAsync({ connector });
     } catch (e) {
       setError(friendlyError(e));
