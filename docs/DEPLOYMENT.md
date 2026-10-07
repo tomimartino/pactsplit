@@ -28,10 +28,23 @@ NEXT_PUBLIC_PACTSPLIT_ADDRESS=0xd4D494B83e59071f4D82de1c126E653dD05A4F1C
 NEXT_PUBLIC_PACTSPLIT_DEPLOYMENT_BLOCK=65927636
 ```
 
-## Remaining proof
+## Confirmed testnet payment
 
-- Publish an actual testnet invoice through the builder's browser wallet.
-- Open it from an independent client wallet, pay test USDC, and confirm every recipient's transfer in the same successful transaction.
+[Invoice #2: Website Catalog](https://pactsplit.vercel.app/pay/5042002/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/2) is paid. The [payment transaction](https://explorer.testnet.arc.io/tx/0x6ad1d0a5a148ff93e7dbe7ee2bcd86dc01ff2fca12de15c66c0f25377d590e45) succeeded at block 65929445 and sent 10 native test USDC into PactSplit.
+
+| Recipient role | Share | Confirmed payout |
+| --- | --- | --- |
+| Developer | 60% | 6 test USDC |
+| Designer | 30% | 3 test USDC |
+| Copywriter | 10% | 1 test USDC |
+
+The transaction contains three `RecipientPaid` events and one `InvoicePaid` event for invoice #2. Each payout matches its invoice recipient and agreed share, their sum equals the transaction value, and contract state records status `Paid` with the same payment block. A fresh browser session displayed the same receipt and explorer transaction link without connecting a wallet.
+
+The builder's wallet both created and paid this rehearsal invoice. Invoice #1 was also published and then cancelled; its public checkout correctly disables payment. Missing invoice links display a plain-language error.
+
+## Remaining mainnet proof
+
 - Deploy and verify on Arc mainnet, configure the website for that deployment, and repeat the flow before submitting to Arc Microgrants.
+- Use a separate client wallet for the mainnet demo and confirm its receipt and every recipient's payout.
 
-Testnet source verification is public code verification, not an independent security audit or proof of a completed payment flow.
+Testnet source verification is public code verification, not an independent security audit. This completed testnet payment is not a mainnet payment.

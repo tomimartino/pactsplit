@@ -12,7 +12,7 @@ PactSplit gives freelance teams a shared invoice. A client pays native USDC once
 - Contract compiled with Solidity 0.8.28; 14 contract tests and 4 amount tests pass.
 - Browser flow verified against a real local EVM: publish a 10-test-USDC invoice, pay from a separate client account, distribute 6/3/1, and render its receipt.
 - **Arc Testnet is configured:** [PactSplit contract](https://explorer.testnet.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract), deployed at block 65927636. The explorer verified its source, and its creation bytecode, runtime bytecode, source, and ABI match the reviewed build. An Arc RPC simulation of invoice creation passes. See [deployment evidence](docs/DEPLOYMENT.md).
-- A wallet-signed testnet invoice and payout still need to be checked. Mainnet deployment and payment proof are pending. Local tests and read-only simulations do not prove the complete Arc payment flow.
+- [Arc Testnet invoice #2](https://pactsplit.vercel.app/pay/5042002/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/2) was published and paid through the builder's wallet. Its [successful payment](https://explorer.testnet.arc.io/tx/0x6ad1d0a5a148ff93e7dbe7ee2bcd86dc01ff2fca12de15c66c0f25377d590e45) distributed 10 test USDC as 6/3/1 to three distinct recipients. Contract state, transaction value, all payout events, and the public browser receipt agree. Mainnet deployment and payment proof remain pending.
 - The `/demo` page is an illustration, not a payment or blockchain transaction.
 
 ## Free-first stack

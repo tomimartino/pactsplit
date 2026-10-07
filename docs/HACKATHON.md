@@ -13,7 +13,8 @@ Arc makes USDC the native currency for both payment and gas. PactSplit uses nati
 ## Links and proof to complete
 
 - Working website: https://pactsplit.vercel.app (Arc Testnet contract configured).
-- Verified testnet contract: https://explorer.testnet.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract. Deployment block 65927636; see [deployment evidence](DEPLOYMENT.md). A wallet-signed invoice and payout are still pending.
+- Verified testnet contract: https://explorer.testnet.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract. Deployment block 65927636; see [deployment evidence](DEPLOYMENT.md).
+- Completed testnet rehearsal: [invoice #2](https://pactsplit.vercel.app/pay/5042002/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/2), [confirmed 10-USDC payment with 6/3/1 payouts](https://explorer.testnet.arc.io/tx/0x6ad1d0a5a148ff93e7dbe7ee2bcd86dc01ff2fca12de15c66c0f25377d590e45).
 - Public GitHub repository: https://github.com/tomimartino/pactsplit.
 - Public builder profile: https://github.com/tomimartino.
 - Arc mainnet contract: fill only after deployment and source verification.
@@ -38,7 +39,7 @@ Use test funds while rehearsing. Do not present the local or testnet receipt as 
 - [ ] Verified public contract source on Arc mainnet.
 - [ ] Hosted website using the same mainnet chain and trusted contract.
 - [x] Public source repository and builder profile.
-- [ ] Checked live invoice and confirmed payout receipt.
+- [ ] Checked live mainnet invoice and confirmed mainnet payout receipt.
 - [ ] Builder confirms eligibility, including any prior Circle/Arc funding for this same project.
 - [ ] Submit the completed build through the official DoraHacks program page.
 
