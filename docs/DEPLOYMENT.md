@@ -42,13 +42,39 @@ The transaction contains three `RecipientPaid` events and one `InvoicePaid` even
 
 The builder's wallet both created and paid this rehearsal invoice. Invoice #1 was also published and then cancelled; its public checkout correctly disables payment. Missing invoice links display a plain-language error.
 
-## Remaining mainnet proof
+## Arc Mainnet
 
-- The public [mainnet setup](https://pactsplit.vercel.app/setup) uses chain ID 5042 with no configured contract, and the setup page explains that real USDC covers payments and network fees. The confirmed testnet deployment remains available at [pactsplit-testnet.vercel.app](https://pactsplit-testnet.vercel.app). Mainnet builds redirect existing testnet invoice links to that fixed testnet site, where the same contract and invoice validation applies.
-- Vercel Production and Preview now use `NEXT_PUBLIC_PACTSPLIT_CHAIN_ID=5042` and `NEXT_PUBLIC_PACTSPLIT_DEPLOYMENT_BLOCK=0`, with the contract address unset until the mainnet deployment is confirmed. The testnet alias remains bound to its original, immutable deployment.
-- A read-only Arc mainnet RPC estimate on October 7, 2026, at 14:30 WIB returned 1,273,550 deployment gas at 20 gwei, approximately 0.025471 USDC. This is an estimate, not a fixed quote; the wallet displays the actual transaction fee. Publishing and paying a demo invoice also incur network fees. No mainnet transaction has been sent.
-- The builder approved proceeding to mainnet with real USDC and confirmed they hold USDC on Base. The previously used builder wallet had zero Arc mainnet USDC when checked. Funding and deployment are pending actions in the builder's wallet. Hosting and development tools remain free. [Arc Microgrants requires a working mainnet project and excludes testnet-only builds](https://dorahacks.io/hackathon/arc-microgrants/detail#arc-microgrants).
-- Deploy and verify on Arc mainnet, configure the website for that deployment, and repeat the flow before submitting to Arc Microgrants.
-- Use a separate client wallet for the mainnet demo and confirm its receipt and every recipient's payout.
+| Field | Confirmed value |
+| --- | --- |
+| Chain ID | 5042 |
+| Contract | `0xd4D494B83e59071f4D82de1c126E653dD05A4F1C` |
+| Deployment block | 24698982 |
+| Deployment transaction | `0xbb6f2a732bb711cf3e6ae73977cbb4931a7991d7da65cfc1bdd02925e2b95710` |
+| Deployment time | October 7, 2026, 15:02:41 WIB |
+| Gas used | 1,262,364 |
+| Actual deployment fee | 0.02524728592048716 USDC |
+| Source verification | Blockscout Bytecode Database, exact match |
+| Compiler / EVM / optimizer | Solidity 0.8.28+commit.7893614a / Cancun / 200 runs |
 
-Testnet source verification is public code verification, not an independent security audit. This completed testnet payment is not a mainnet payment.
+[Verified mainnet contract](https://explorer.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract) · [Successful mainnet deployment](https://explorer.arc.io/tx/0xbb6f2a732bb711cf3e6ae73977cbb4931a7991d7da65cfc1bdd02925e2b95710) · [Mainnet setup](https://pactsplit.vercel.app/setup)
+
+The Arc mainnet RPC confirmed successful contract creation in the supplied block. Creation input and deployed runtime bytecode match the reviewed PactSplit build. The explorer automatically verified the exact bytecode match against its database; its source code and ABI exactly match the repository source and artifact. The contract address is the same on testnet and mainnet, but their chain IDs, blocks, invoices, and funds are independent.
+
+Read calls confirmed the expected constants and an initially empty invoice history. A read-only simulation created a 0.10-USDC invoice with the same three recipient wallets and a 60/30/10 split; it returned the next invoice ID while the onchain invoice count stayed unchanged. A missing invoice read produced the expected plain-language error. These checks sent no transactions or funds.
+
+Vercel Production and Preview are configured with:
+
+```dotenv
+NEXT_PUBLIC_PACTSPLIT_CHAIN_ID=5042
+NEXT_PUBLIC_PACTSPLIT_ADDRESS=0xd4D494B83e59071f4D82de1c126E653dD05A4F1C
+NEXT_PUBLIC_PACTSPLIT_DEPLOYMENT_BLOCK=24698982
+```
+
+The confirmed testnet build remains at [pactsplit-testnet.vercel.app](https://pactsplit-testnet.vercel.app), bound to its original immutable deployment. Mainnet builds redirect existing testnet invoice links there, where the original contract and invoice validation still apply. Hosting and development tools remain free; the builder approved using real USDC for mainnet network fees and demo payments.
+
+## Remaining mainnet payment proof
+
+- Publish a small mainnet invoice, use a separate client wallet to pay it, and confirm the receipt and every recipient payout. A 0.10-USDC demo with 60/30/10 shares distributes 0.06 / 0.03 / 0.01 USDC, plus network fees.
+- Complete the remaining submission evidence before applying to [Arc Microgrants](https://dorahacks.io/hackathon/arc-microgrants/detail#arc-microgrants).
+
+Source verification is public code verification, not an independent security audit. The completed testnet payment above is not a mainnet payment.
