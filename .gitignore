@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
+contracts/cache/
+contracts/artifacts/
+contracts/coverage/
+*.tsbuildinfo
+work/
+
+.vercel
+!.env.example

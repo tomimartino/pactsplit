@@ -1,0 +1,35 @@
+{
+  "name": "pactsplit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["contracts"],
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "contracts:compile": "npm run compile --workspace contracts && node scripts/export-contract.mjs",
+    "contracts:test": "npm run test --workspace contracts",
+    "local:chain": "npm run node --workspace contracts",
+    "local:deploy": "node scripts/local-deploy.mjs",
+    "test": "node --experimental-strip-types --test test/*.test.ts"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "viem": "2.57.3",
+    "wagmi": "3.7.7",
+    "@tanstack/react-query": "5.104.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@tailwindcss/postcss": "4.3.3",
+    "tailwindcss": "4.3.3"
+  },
+  "engines": { "node": "24.x" }
+}
