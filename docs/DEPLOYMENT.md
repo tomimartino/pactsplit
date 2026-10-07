@@ -72,9 +72,23 @@ NEXT_PUBLIC_PACTSPLIT_DEPLOYMENT_BLOCK=24698982
 
 The confirmed testnet build remains at [pactsplit-testnet.vercel.app](https://pactsplit-testnet.vercel.app), bound to its original immutable deployment. Mainnet builds redirect existing testnet invoice links there, where the original contract and invoice validation still apply. Hosting and development tools remain free; the builder approved using real USDC for mainnet network fees and demo payments.
 
-## Remaining mainnet payment proof
+## Confirmed mainnet payment
 
-- Publish a small mainnet invoice, use a separate client wallet to pay it, and confirm the receipt and every recipient payout. A 0.10-USDC demo with 60/30/10 shares distributes 0.06 / 0.03 / 0.01 USDC, plus network fees.
-- Complete the remaining submission evidence before applying to [Arc Microgrants](https://dorahacks.io/hackathon/arc-microgrants/detail#arc-microgrants).
+[Invoice #1: Catalog Website](https://pactsplit.vercel.app/pay/5042/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/1) is paid. The [successful payment transaction](https://explorer.arc.io/tx/0x85a489a6e041fa83dd55c261ab1998c98efe9131eeaa9a9b9815e700460441cd) settled at block 24700028 on October 7, 2026, at 15:11:32 WIB. Its value was 0.10 native USDC; the sender also paid 0.003542680534236144 USDC in network fees.
+
+| Recipient | Role | Share | Confirmed payout |
+| --- | --- | --- | --- |
+| Mira | Developer | 60% | 0.06 USDC |
+| Tomi | Designer | 30% | 0.03 USDC |
+| Ully | Copywriter | 10% | 0.01 USDC |
+
+All three `RecipientPaid` events match the invoice's recipient addresses, shares, and amounts. Their sum equals the transaction value. The successful receipt, `InvoicePaid` event, and contract state agree on the invoice ID, payer, and payment block. A fresh browser session displayed the same paid receipt and explorer link without connecting a wallet.
+
+The builder's wallet created and paid this mainnet rehearsal. A recording using a separate client paying wallet would demonstrate that role independently; it has not been recorded on mainnet. Separate creator and client accounts were exercised in the local EVM test flow.
+
+## Remaining submission steps
+
+- The builder confirmed on October 7, 2026 that this project has not received prior Circle/Arc funding. Program screening remains with the organizer.
+- Submit the completed build through the [official Arc Microgrants page](https://dorahacks.io/hackathon/arc-microgrants/detail#arc-microgrants). An optional demo video can show a separate client paying wallet.
 
 Source verification is public code verification, not an independent security audit. The completed testnet payment above is not a mainnet payment.
