@@ -14,7 +14,8 @@ PactSplit gives freelance teams a shared invoice. A client pays native USDC once
 - **Arc Testnet is available at [pactsplit-testnet.vercel.app](https://pactsplit-testnet.vercel.app):** [PactSplit contract](https://explorer.testnet.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract), deployed at block 65927636. The explorer verified its source, and its creation bytecode, runtime bytecode, source, and ABI match the reviewed build. An Arc RPC simulation of invoice creation passes. See [deployment evidence](docs/DEPLOYMENT.md).
 - [Arc Testnet invoice #2](https://pactsplit-testnet.vercel.app/pay/5042002/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/2) was published and paid through the builder's wallet. Its [successful payment](https://explorer.testnet.arc.io/tx/0x6ad1d0a5a148ff93e7dbe7ee2bcd86dc01ff2fca12de15c66c0f25377d590e45) distributed 10 test USDC as 6/3/1 to three distinct recipients. Contract state, transaction value, all payout events, and the public browser receipt agree.
 - **Arc mainnet contract deployed and verified:** [PactSplit](https://explorer.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract), chain 5042, deployment block 24698982. Creation and runtime bytecode, verified source, and ABI match the reviewed build; a read-only invoice simulation passes. Vercel is configured for this deployment. Existing testnet invoice URLs redirect to the preserved testnet site.
-- **Mainnet payment confirmed:** [Invoice #1](https://pactsplit.vercel.app/pay/5042/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/1) settled 0.10 real USDC as 0.06/0.03/0.01 to three distinct wallets in [one successful transaction](https://explorer.arc.io/tx/0x85a489a6e041fa83dd55c261ab1998c98efe9131eeaa9a9b9815e700460441cd). The builder created and paid this rehearsal; RPC events and the independently opened public receipt agree. Program submission is still pending.
+- **Mainnet payment confirmed:** [Invoice #1](https://pactsplit.vercel.app/pay/5042/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/1) settled 0.10 real USDC as 0.06/0.03/0.01 to three distinct wallets in [one successful transaction](https://explorer.arc.io/tx/0x85a489a6e041fa83dd55c261ab1998c98efe9131eeaa9a9b9815e700460441cd). The builder created and paid this rehearsal; RPC events and the independently opened public receipt agree.
+- **Arc Microgrants submitted:** [PactSplit Build #49449](https://dorahacks.io/build/49449) was submitted by the builder on October 8, 2026. DoraHacks displays **Under Review**; this is a pending review, not an award decision.
 - The `/demo` page is an illustration, not a payment or blockchain transaction.
 
 ## Free-first stack
@@ -109,7 +110,7 @@ Hardhat's local EVM does not model all Arc restrictions, including blocklisted r
 
 ## Hackathon readiness
 
-The [submission worksheet](docs/HACKATHON.md) identifies the remaining proof and links. A local or testnet demo alone is not ready for Arc Microgrants submission; a working Arc mainnet deployment is required.
+The [submission record](docs/HACKATHON.md) documents the completed requirements, mainnet proof, and public DoraHacks Build. Arc Microgrants requires a working Arc mainnet deployment; a local or testnet demo alone does not meet that requirement.
 
 ## Official references
 

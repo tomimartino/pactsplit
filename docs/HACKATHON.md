@@ -1,6 +1,6 @@
-# Arc Microgrants submission worksheet
+# Arc Microgrants submission record
 
-**Status: ready for the builder's submission; not submitted. Mainnet deployment, verified source, and successful payment proof are confirmed. The builder confirmed this project has not received prior Circle/Arc funding.**
+**Status: submitted on October 8, 2026; Under Review. [PactSplit Build #49449](https://dorahacks.io/build/49449) appears as the builder's submission in the [Arc Microgrants build list](https://dorahacks.io/hackathon/arc-microgrants/build). Mainnet deployment, verified source, and successful payment proof are confirmed. The builder confirmed this project has not received prior Circle/Arc funding. Review and award decisions remain with the organizer.**
 
 ## Project
 
@@ -10,7 +10,7 @@ PactSplit helps independent creative teams invoice a client together. The team a
 
 Arc makes USDC the native currency for both payment and gas. PactSplit uses native value transfers, avoiding ERC-20 approval steps, and uses Arc contract state and its own settlement events for a publicly verifiable breakdown. The MVP focuses on direct settlement, clear recipient information, no platform fee, and a checkout that can be opened independently from the creator's browser.
 
-## Links and proof to complete
+## Links and proof
 
 - Mainnet website: https://pactsplit.vercel.app (chain 5042; verified PactSplit contract configured).
 - Working testnet website: https://pactsplit-testnet.vercel.app (verified Arc Testnet contract configured).
@@ -18,6 +18,7 @@ Arc makes USDC the native currency for both payment and gas. PactSplit uses nati
 - Completed testnet rehearsal: [invoice #2](https://pactsplit-testnet.vercel.app/pay/5042002/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/2), [confirmed 10-USDC payment with 6/3/1 payouts](https://explorer.testnet.arc.io/tx/0x6ad1d0a5a148ff93e7dbe7ee2bcd86dc01ff2fca12de15c66c0f25377d590e45).
 - Public GitHub repository: https://github.com/tomimartino/pactsplit.
 - Public builder profile: https://github.com/tomimartino.
+- Submitted DoraHacks Build: https://dorahacks.io/build/49449 (Under Review, checked October 8, 2026).
 - Verified Arc mainnet contract: https://explorer.arc.io/address/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C?tab=contract. Deployment block 24698982.
 - Mainnet deployment transaction: https://explorer.arc.io/tx/0xbb6f2a732bb711cf3e6ae73977cbb4931a7991d7da65cfc1bdd02925e2b95710.
 - Confirmed mainnet invoice #1: https://pactsplit.vercel.app/pay/5042/0xd4D494B83e59071f4D82de1c126E653dD05A4F1C/1.
@@ -34,7 +35,7 @@ Arc makes USDC the native currency for both payment and gas. PactSplit uses nati
 
 Use test funds while rehearsing. Do not present the local or testnet receipt as a mainnet receipt.
 
-## Remaining submission requirements
+## Submission requirements
 
 - [x] Contract deployed on Arc mainnet; RPC read and invoice simulation pass.
 - [x] Verified public contract source on Arc mainnet.
@@ -42,6 +43,6 @@ Use test funds while rehearsing. Do not present the local or testnet receipt as 
 - [x] Public source repository and builder profile.
 - [x] Checked live mainnet invoice and confirmed mainnet payout receipt, matching every recipient event and total.
 - [x] Builder confirmed on October 7, 2026 that this project has not received prior Circle/Arc funding. Program screening and final eligibility decisions remain with the organizer.
-- [ ] Submit the completed build through the official DoraHacks program page.
+- [x] Builder submitted the completed Build through the official DoraHacks program page on October 8, 2026; DoraHacks shows Under Review.
 
-Program deadline rechecked on October 7, 2026: October 14, 2026, 23:59 ET (October 15, 2026, 10:59 WIB). Recheck the official page before submitting.
+Program deadline rechecked on October 8, 2026: October 14, 2026, 23:59 ET (October 15, 2026, 10:59 WIB). The application was submitted before this deadline.

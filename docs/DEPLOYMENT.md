@@ -86,9 +86,10 @@ All three `RecipientPaid` events match the invoice's recipient addresses, shares
 
 The builder's wallet created and paid this mainnet rehearsal. A recording using a separate client paying wallet would demonstrate that role independently; it has not been recorded on mainnet. Separate creator and client accounts were exercised in the local EVM test flow.
 
-## Remaining submission steps
+## Arc Microgrants submission
 
 - The builder confirmed on October 7, 2026 that this project has not received prior Circle/Arc funding. Program screening remains with the organizer.
-- Submit the completed build through the [official Arc Microgrants page](https://dorahacks.io/hackathon/arc-microgrants/detail#arc-microgrants). An optional demo video can show a separate client paying wallet.
+- The builder completed the final submission on October 8, 2026. [PactSplit Build #49449](https://dorahacks.io/build/49449) is listed in [Arc Microgrants](https://dorahacks.io/hackathon/arc-microgrants/build) with **Under Review** status. This confirms submission, not selection or payment of a microgrant.
+- An optional demo video can show a separate client paying wallet; it was not required to submit this working mainnet prototype.
 
 Source verification is public code verification, not an independent security audit. The completed testnet payment above is not a mainnet payment.
